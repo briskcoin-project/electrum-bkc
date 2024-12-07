@@ -41,8 +41,8 @@ def read_json(filename, default):
     return r
 
 
-GIT_REPO_URL = "https://github.com/spesmilo/electrum"
-GIT_REPO_ISSUES_URL = "https://github.com/spesmilo/electrum/issues"
+GIT_REPO_URL = "https://github.com/briskcoin-project/electrum-bkc"
+GIT_REPO_ISSUES_URL = "https://github.com/briskcoin-project/electrum-bkc/issues"
 BIP39_WALLET_FORMATS = read_json('bip39_wallet_formats.json', [])
 
 
@@ -86,12 +86,12 @@ class BitcoinMainnet(AbstractNet):
 
     NET_NAME = "mainnet"
     TESTNET = False
-    WIF_PREFIX = 0x80
-    ADDRTYPE_P2PKH = 0
-    ADDRTYPE_P2SH = 5
+    WIF_PREFIX = 0x99
+    ADDRTYPE_P2PKH = 25
+    ADDRTYPE_P2SH = 33
     SEGWIT_HRP = "bc"
     BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"
+    GENESIS = "000004ff23fc19ab404c03e1af76ff37403817f60489a0db1e8bd39652f259ec"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
     CHECKPOINTS = read_json('checkpoints.json', [])
@@ -116,9 +116,11 @@ class BitcoinMainnet(AbstractNet):
     BIP44_COIN_TYPE = 0
     LN_REALM_BYTE = 0
     LN_DNS_SEEDS = [
-        'nodes.lightning.directory.',
-        'lseed.bitcoinstats.com.',
-        'lseed.darosior.ninja',
+        'seed01.briskcoin.org',
+        'seed02.briskcoin.org',
+        'seed03.briskcoin.org',
+        'seed04.briskcoin.org',
+        'seed05.briskcoin.org',
     ]
 
 
@@ -131,7 +133,7 @@ class BitcoinTestnet(AbstractNet):
     ADDRTYPE_P2SH = 196
     SEGWIT_HRP = "tb"
     BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"
+    GENESIS = "00000e85844077ef29e65eaf126729360754696862efc5c255578ff9d08eef30"
     DEFAULT_PORTS = {'t': '51001', 's': '51002'}
     DEFAULT_SERVERS = read_json('servers_testnet.json', {})
     CHECKPOINTS = read_json('checkpoints_testnet.json', [])
@@ -174,7 +176,7 @@ class BitcoinRegtest(BitcoinTestnet):
     NET_NAME = "regtest"
     SEGWIT_HRP = "bcrt"
     BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"
+    GENESIS = "4d7328373020ed6dbd37d72a0803b23c6a9262e74f00440c8c1e5a3b690d1b9e"
     DEFAULT_SERVERS = read_json('servers_regtest.json', {})
     CHECKPOINTS = []
     LN_DNS_SEEDS = []

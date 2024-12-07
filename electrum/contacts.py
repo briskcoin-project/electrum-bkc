@@ -99,7 +99,7 @@ class Contacts(dict, Logger):
                 }
         if openalias := self.resolve_openalias(k):
             return openalias
-        raise AliasNotFoundException("Invalid Bitcoin address or alias", k)
+        raise AliasNotFoundException("Invalid Briskcoin address or alias", k)
 
     @classmethod
     def resolve_openalias(cls, url: str) -> Dict[str, Any]:
@@ -146,7 +146,7 @@ class Contacts(dict, Logger):
         except DNSException as e:
             _logger.info(f'Error resolving openalias: {repr(e)}')
             return None
-        prefix = 'btc'
+        prefix = 'bkc'
         for record in records:
             if record.rdtype != dns.rdatatype.TXT:
                 continue

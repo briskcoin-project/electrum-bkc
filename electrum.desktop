@@ -3,19 +3,19 @@
 # Note: This assumes $HOME/.local/bin is in your $PATH
 
 [Desktop Entry]
-Comment=Lightweight Bitcoin Client
+Comment=Lightweight Briskcoin Client
 Exec=electrum %u
-GenericName[en_US]=Bitcoin Wallet
-GenericName=Bitcoin Wallet
+GenericName[en_US]=Briskcoin Wallet
+GenericName=Briskcoin Wallet
 Icon=electrum
-Name[en_US]=Electrum Bitcoin Wallet
-Name=Electrum Bitcoin Wallet
+Name[en_US]=Electrum Briskcoin Wallet
+Name=Electrum Briskcoin Wallet
 Categories=Finance;Network;
 StartupNotify=true
 StartupWMClass=electrum
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/bitcoin;x-scheme-handler/lightning;
+MimeType=x-scheme-handler/briskcoin;x-scheme-handler/lightning;
 Actions=Testnet;
 Keywords=crypto;currency;BTC
 

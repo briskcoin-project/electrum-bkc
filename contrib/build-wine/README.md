@@ -81,13 +81,13 @@ The script `unsign.sh` performs these steps.
 `pyi-archive_viewer` is needed, for that run `$ pip install pyinstaller`.
 As a first pass overview, run:
 ```
-pyi-archive_viewer -l electrum-*.exe1 > f1
-pyi-archive_viewer -l electrum-*.exe2 > f2
+pyi-archive_viewer -l electrum-bkc-*.exe1 > f1
+pyi-archive_viewer -l electrum-bkc-*.exe2 > f2
 diff f1 f2 > d
 cat d
 ```
 Then investigate manually:
 ```
-$ pyi-archive_viewer electrum-*.exe1
+$ pyi-archive_viewer electrum-bkc-*.exe1
 ? help
 ```

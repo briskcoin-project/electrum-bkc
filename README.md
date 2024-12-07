@@ -1,10 +1,10 @@
-# Electrum - Lightweight Bitcoin client
+# Electrum - Lightweight Briskcoin client
 
 ```
 Licence: MIT Licence
 Author: Thomas Voegtlin
 Language: Python (>= 3.8)
-Homepage: https://electrum.org/
+Homepage: https://briskcoin.org/
 ```
 
 [![Build Status](https://api.cirrus-ci.com/github/spesmilo/electrum.svg?branch=master)](https://cirrus-ci.com/github/spesmilo/electrum)
@@ -15,7 +15,7 @@ Homepage: https://electrum.org/
 ## Getting started
 
 _(If you've come here looking to simply run Electrum,
-[you may download it here](https://electrum.org/#download).)_
+[you may download it here](https://briskcoin.org/#section-74).)_
 
 Electrum itself is pure Python, and so are most of the required dependencies,
 but not everything. The following sections describe how to run from source, but here
@@ -97,7 +97,7 @@ and [for macOS](contrib/osx/README_macos.md))_
 
 Check out the code from GitHub:
 ```
-$ git clone https://github.com/spesmilo/electrum.git
+$ git clone https://github.com/briskcoin-project/electrum-bkc.git
 $ cd electrum
 $ git submodule update --init
 ```

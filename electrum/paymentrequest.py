@@ -56,8 +56,8 @@ if TYPE_CHECKING:
 _logger = get_logger(__name__)
 
 
-REQUEST_HEADERS = {'Accept': 'application/bitcoin-paymentrequest', 'User-Agent': 'Electrum'}
-ACK_HEADERS = {'Content-Type':'application/bitcoin-payment','Accept':'application/bitcoin-paymentack','User-Agent':'Electrum'}
+REQUEST_HEADERS = {'Accept': 'application/briskcoin-paymentrequest', 'User-Agent': 'Electrum'}
+ACK_HEADERS = {'Content-Type':'application/briskcoin-payment','Accept':'application/briskcoin-paymentack','User-Agent':'Electrum Briskcoin'}
 
 ca_path = certifi.where()
 ca_list = None
@@ -82,9 +82,9 @@ async def get_payment_request(url: str) -> 'PaymentRequest':
                 async with session.get(url) as response:
                     resp_content = await response.read()
                     response.raise_for_status()
-                    # Guard against `bitcoin:`-URIs with invalid payment request URLs
+                    # Guard against `briskcoin:`-URIs with invalid payment request URLs
                     if "Content-Type" not in response.headers \
-                    or response.headers["Content-Type"] != "application/bitcoin-paymentrequest":
+                    or response.headers["Content-Type"] != "application/briskcoin-paymentrequest":
                         data = None
                         error = "payment URL not pointing to a payment request handling server"
                     else:
@@ -177,7 +177,7 @@ class PaymentRequest:
             return True
         if pr.pki_type in ["x509+sha256", "x509+sha1"]:
             return self.verify_x509(pr)
-        elif pr.pki_type in ["dnssec+btc", "dnssec+ecdsa"]:
+        elif pr.pki_type in ["dnssec+bkc", "dnssec+ecdsa"]:
             return self.verify_dnssec(pr)
         else:
             self.error = "ERROR: Unsupported PKI Type for Message Signature"
@@ -231,7 +231,7 @@ class PaymentRequest:
         if info.get('validated') is not True:
             self.error = "Alias verification failed (DNSSEC)"
             return False
-        if pr.pki_type == "dnssec+btc":
+        if pr.pki_type == "dnssec+bkc":
             self.requestor = alias
             address = info.get('address')
             pr.signature = b''
@@ -352,7 +352,7 @@ def make_unsigned_request(req: 'Invoice'):
 
 
 def sign_request_with_alias(pr, alias, alias_privkey):
-    pr.pki_type = 'dnssec+btc'
+    pr.pki_type = 'dnssec+bkc'
     pr.pki_data = str(alias)
     message = pr.SerializeToString()
     ec_key = ecc.ECPrivkey(alias_privkey)
@@ -459,7 +459,7 @@ def serialize_request(req):  # FIXME this is broken
     requestor = req.get('name')
     if requestor and signature:
         pr.signature = bfh(signature)
-        pr.pki_type = 'dnssec+btc'
+        pr.pki_type = 'dnssec+bkc'
         pr.pki_data = str(requestor)
     return pr
 

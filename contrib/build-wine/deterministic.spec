@@ -6,7 +6,7 @@ import sys, os
 
 PYPKG="electrum"
 MAIN_SCRIPT="run_electrum"
-PROJECT_ROOT = "C:/electrum"
+PROJECT_ROOT = "C:/electrum-bkc"
 ICONS_FILE=f"{PROJECT_ROOT}/{PYPKG}/gui/icons/electrum.ico"
 
 cmdline_name = os.environ.get("ELECTRUM_CMDLINE_NAME")
