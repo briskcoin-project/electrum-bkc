@@ -67,7 +67,7 @@ You probably need to clear the cache: `rm -rf .buildozer/android/platform/build-
 Assuming `adb` is installed:
 ```
 $ adb -d install -r dist/Electrum-*-arm64-v8a-debug.apk
-$ adb shell monkey -p org.electrum.electrum 1
+$ adb shell monkey -p org.electrum_bkc.electrum_bkc 1
 ```
 
 
@@ -92,7 +92,7 @@ adb logcat | grep python
 ```
 Better `grep` but fragile because of `cut`:
 ```
-adb logcat | grep -F "`adb shell ps | grep org.electrum.electrum | cut -c14-19`"
+adb logcat | grep -F "`adb shell ps | grep org.electrum_wcn.electrum_wcn | cut -c14-19`"
 ```
 
 
@@ -137,9 +137,9 @@ of Android does not let you access the internal storage of an app without root.
 To pull a file:
 ```
 $ adb shell
-adb$ run-as org.electrum.electrum ls /data/data/org.electrum.electrum/files/data
+adb$ run-as org.electrum.electrum ls /data/data/org.electrum_wcn.electrum_wcn/files/data
 adb$ exit
-$ adb exec-out run-as org.electrum.electrum cat /data/data/org.electrum.electrum/files/data/wallets/my_wallet > my_wallet
+$ adb exec-out run-as org.electrum.electrum cat /data/data/org.electrum_wcn.electrum_wcn/files/data/wallets/my_wallet > my_wallet
 ```
 To push a file:
 ```

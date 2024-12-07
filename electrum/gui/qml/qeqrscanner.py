@@ -57,7 +57,7 @@ class QEQRScanner(QObject):
         if 'ANDROID_DATA' not in os.environ:
             self._scan_qr_non_android()
             return
-        jSimpleScannerActivity = autoclass("org.electrum.qr.SimpleScannerActivity")
+        jSimpleScannerActivity = autoclass("org.electrum_bkc.qr.SimpleScannerActivity")
         intent = jIntent(jpythonActivity, jSimpleScannerActivity)
         intent.putExtra(jIntent.EXTRA_TEXT, jString(self._hint))
 

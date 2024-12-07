@@ -41,9 +41,9 @@ Execute the binary as follows: `./electrum*.AppImage --appimage-extract`
 ### How to investigate diff between binaries if reproducibility fails?
 ```
 cd dist/
-./electrum-*-x86_64.AppImage1 --appimage-extract
+./electrum-bkc-*-x86_64.AppImage1 --appimage-extract
 mv squashfs-root/ squashfs-root1/
-./electrum-*-x86_64.AppImage2 --appimage-extract
+./electrum-bkc-*-x86_64.AppImage2 --appimage-extract
 mv squashfs-root/ squashfs-root2/
 $(cd squashfs-root1; find -type f -exec sha256sum '{}' \; > ./../sha256sum1)
 $(cd squashfs-root2; find -type f -exec sha256sum '{}' \; > ./../sha256sum2)

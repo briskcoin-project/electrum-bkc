@@ -3,4 +3,4 @@
 	url = https://github.com/spesmilo/electrum-locale
 [submodule "electrum/www"]
 	path = electrum/plugins/payserver/www
-	url = https://github.com/spesmilo/electrum-http.git
+	url = https://github.com/briskcoin-project/electrum-http.git

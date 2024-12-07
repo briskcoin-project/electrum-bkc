@@ -655,7 +655,7 @@ class SwapManager(Logger):
             tx: PartialTransaction = None,
             channels = None,
     ) -> Optional[str]:
-        """send on-chain BTC, receive on Lightning
+        """send on-chain BKC, receive on Lightning
 
         Old (removed) flow:
         - User generates an LN invoice with RHASH, and knows preimage.
@@ -850,7 +850,7 @@ class SwapManager(Logger):
         payment_hash = sha256(preimage)
         request_data = {
             "type": "reversesubmarine",
-            "pairId": "BTC/BTC",
+            "pairId": "BKC/BKC",
             "orderSide": "buy",
             "invoiceAmount": lightning_amount_sat,
             "preimageHash": payment_hash.hex(),
@@ -1154,7 +1154,7 @@ class SwapManager(Logger):
         # requesting a normal swap (old protocol) will raise an exception
         #request = await r.json()
         req_type = request['type']
-        assert request['pairId'] == 'BTC/BTC'
+        assert request['pairId'] == 'BKC/BKC'
         if req_type == 'reversesubmarine':
             lightning_amount_sat=request['invoiceAmount']
             payment_hash=bytes.fromhex(request['preimageHash'])
@@ -1274,8 +1274,8 @@ class HttpTransport(Logger):
             self.logger.error(f"Swap server errored: {e!r}")
             raise SwapServerError() from e
         assert response.get('htlcFirst') is True
-        fees = response['pairs']['BTC/BTC']['fees']
-        limits = response['pairs']['BTC/BTC']['limits']
+        fees = response['pairs']['BKC/BKC']['fees']
+        limits = response['pairs']['BKC/BKC']['limits']
         pairs = SwapFees(
             percentage = fees['percentage'],
             normal_fee = fees['minerFees']['baseAsset']['normal'],
