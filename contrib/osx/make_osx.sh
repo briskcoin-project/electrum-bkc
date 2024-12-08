@@ -5,7 +5,7 @@ set -e
 # Parameterize
 PYTHON_VERSION=3.11.9
 PY_VER_MAJOR="3.11"  # as it appears in fs paths
-PACKAGE=Electrum-WCN
+PACKAGE=Electrum-BKC
 GIT_REPO=https://github.com/briskcoin-project/electrum-bkc
 
 export GCC_STRIP_BINARIES="1"
