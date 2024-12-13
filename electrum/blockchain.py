@@ -1,4 +1,4 @@
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Briskcoin client
 # Copyright (C) 2012 thomasv@ecdsa.org
 #
 # Permission is hereby granted, free of charge, to any person
@@ -493,7 +493,7 @@ class Blockchain(Logger):
         if not header:
             return True
         # note: We check the timestamp only in the latest header.
-        #       The Bitcoin consensus has a lot of leeway here:
+        #       The Briskcoin consensus has a lot of leeway here:
         #       - needs to be greater than the median of the timestamps of the past 11 blocks, and
         #       - up to at most 2 hours into the future compared to local clock
         #       so there is ~2 hours of leeway in either direction
@@ -548,7 +548,7 @@ class Blockchain(Logger):
 
     @classmethod
     def bits_to_target(cls, bits: int) -> int:
-        # arith_uint256::SetCompact in Bitcoin Core
+        # arith_uint256::SetCompact in Briskcoin Core
         if not (0 <= bits < (1 << 32)):
             raise InvalidHeader(f"bits should be uint32. got {bits!r}")
         bitsN = (bits >> 24) & 0xff
@@ -569,7 +569,7 @@ class Blockchain(Logger):
 
     @classmethod
     def target_to_bits(cls, target: int) -> int:
-        # arith_uint256::GetCompact in Bitcoin Core
+        # arith_uint256::GetCompact in Briskcoin Core
         # see https://github.com/bitcoin/bitcoin/blob/7fcf53f7b4524572d1d0c9a5fdc388e87eb02416/src/arith_uint256.cpp#L223
         c = target.to_bytes(length=32, byteorder='big')
         bitsN = len(c)

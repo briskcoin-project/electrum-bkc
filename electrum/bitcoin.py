@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Briskcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # Permission is hereby granted, free of charge, to any person
@@ -199,7 +199,7 @@ class opcodes(IntEnum):
 
 
 def script_num_to_bytes(i: int) -> bytes:
-    """See CScriptNum in Bitcoin Core.
+    """See CScriptNum in Briskcoin Core.
     Encodes an integer as bytes, to be used in script.
 
     ported from https://github.com/bitcoin/bitcoin/blob/8cbc5c4be4be22aca228074f087a374a7ec38be8/src/script/script.h#L326

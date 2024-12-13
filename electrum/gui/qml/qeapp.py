@@ -384,7 +384,7 @@ class ElectrumQmlApplication(QGuiApplication):
         qmlRegisterType(QSortFilterProxyModel, 'org.electrum', 1, 0, 'QSortFilterProxyModel')
 
         qmlRegisterType(QEWallet, 'org.electrum', 1, 0, 'Wallet')
-        qmlRegisterType(QEBitcoin, 'org.electrum', 1, 0, 'Bitcoin')
+        qmlRegisterType(QEBitcoin, 'org.electrum', 1, 0, 'Briskcoin')
         qmlRegisterType(QEQRParser, 'org.electrum', 1, 0, 'QRParser')
         qmlRegisterType(QEQRScanner, 'org.electrum', 1, 0, 'QRScanner')
         qmlRegisterType(QEFX, 'org.electrum', 1, 0, 'FX')

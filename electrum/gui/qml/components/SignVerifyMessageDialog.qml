@@ -214,7 +214,7 @@ ElDialog {
         addressField.text = address
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
     }
 

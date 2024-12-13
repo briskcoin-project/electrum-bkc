@@ -427,7 +427,7 @@ Item {
         }
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
     }
 

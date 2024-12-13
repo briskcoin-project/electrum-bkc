@@ -12,15 +12,15 @@
   <id>org.electrum.electrum</id>
 
   <name>Electrum</name>
-  <summary>Bitcoin Wallet</summary>
+  <summary>Briskcoin Wallet</summary>
 
   <metadata_license>MIT</metadata_license>
   <project_license>MIT</project_license>
 
   <description>
     <p>
-      Electrum is a lightweight Bitcoin wallet focused on speed, with low resource usage and simplifying Bitcoin.
-      Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Bitcoin system.
+      Electrum is a lightweight Briskcoin wallet focused on speed, with low resource usage and simplifying Briskcoin.
+      Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Briskcoin system.
     </p>
   </description>
 

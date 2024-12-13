@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum - lightweight Briskcoin client
 # Copyright (C) 2015 kyuupichan@gmail
 #
 # Permission is hereby granted, free of charge, to any person
@@ -492,7 +492,7 @@ class CoinChooserPrivacy(CoinChooserRandom):
                     badness += 1
             elif change > max_change:
                 badness += (change - max_change) / (max_change + 10000)
-                # Penalize large change; 5 BTC excess ~= using 1 more input
+                # Penalize large change; 5 BKC excess ~= using 1 more input
                 badness += change / (COIN * 5)
             return ScoredCandidate(badness, tx, buckets)
 
