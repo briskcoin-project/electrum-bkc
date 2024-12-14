@@ -120,7 +120,7 @@ ElDialog {
         }
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
     }
 

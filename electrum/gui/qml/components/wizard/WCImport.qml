@@ -91,7 +91,7 @@ WizardComponent {
         }
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
     }
 

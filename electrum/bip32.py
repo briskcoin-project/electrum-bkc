@@ -167,7 +167,7 @@ class BIP32Node(NamedTuple):
 
     @classmethod
     def from_rootseed(cls, seed: bytes, *, xtype: str) -> 'BIP32Node':
-        I = hmac_oneshot(b"Bitcoin seed", seed, hashlib.sha512)
+        I = hmac_oneshot(b"Briskcoin seed", seed, hashlib.sha512)
         master_k = I[0:32]
         master_c = I[32:]
         return BIP32Node(xtype=xtype,

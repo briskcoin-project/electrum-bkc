@@ -94,7 +94,7 @@ WizardComponent {
         bitcoin.generateSeed(wizard_data['seed_type'])
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
         onGeneratedSeedChanged: {
             seedtext.text = generatedSeed

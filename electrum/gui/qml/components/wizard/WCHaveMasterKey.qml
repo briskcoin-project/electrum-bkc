@@ -191,7 +191,7 @@ WizardComponent {
         }
     }
 
-    Bitcoin {
+    Briskcoin {
         id: bitcoin
         onValidationMessageChanged: {
             validationtext.text = validationMessage

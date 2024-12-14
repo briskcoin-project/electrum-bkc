@@ -57,7 +57,7 @@ except ImportError as e:
 
 MSG_NEEDS_FW_UPDATE_GENERIC = _('Firmware version too old. Please update at') + \
     ' https://www.ledger.com'
-MSG_NEEDS_FW_UPDATE_SEGWIT = _('Firmware version (or "Bitcoin" app) too old for Segwit support. Please update at') + \
+MSG_NEEDS_FW_UPDATE_SEGWIT = _('Firmware version (or "Briskcoin" app) too old for Segwit support. Please update at') + \
     ' https://www.ledger.com'
 MULTI_OUTPUT_SUPPORT = '1.1.4'
 SEGWIT_SUPPORT = '1.1.10'
@@ -240,9 +240,9 @@ def get_bip44_purpose(addrtype: 'AddressType') -> int:
 
 def get_bip44_chain(chain: 'Chain') -> int:
     """
-    Determine the BIP 44 coin type based on the Bitcoin chain type.
+    Determine the BIP 44 coin type based on the Briskcoin chain type.
 
-    For the Bitcoin mainnet chain, this returns 0. For the other chains, this returns 1.
+    For the Briskcoin mainnet chain, this returns 0. For the other chains, this returns 1.
 
     :param chain: The chain
     """
@@ -882,7 +882,7 @@ class Ledger_Client_Legacy_HW1(Ledger_Client_Legacy):
                 # based on docs 0x6f00 might be a more general error, hence we also compare message to be sure
                 raise UserFacingException(_("Invalid channel.\nPlease make sure that 'Browser support' is disabled on your device."))
             if e.sw == 0x6d00 or e.sw == 0x6700:
-                raise UserFacingException(_("Device not in Bitcoin mode")) from e
+                raise UserFacingException(_("Device not in Briskcoin mode")) from e
             raise e
         else:
             deprecation_warning = (
