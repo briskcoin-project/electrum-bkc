@@ -155,18 +155,18 @@ RUN apt -y update -qq \
 
 
 # create new user to avoid using root; but with sudo access and no password for convenience.
-ARG UID=1000
-ENV USER="user"
-ENV HOME_DIR="/home/${USER}"
-ENV WORK_DIR="${HOME_DIR}/wspace" \
-    PATH="${HOME_DIR}/.local/bin:${PATH}"
-RUN useradd --uid $UID --create-home --shell /bin/bash ${USER}
-RUN usermod -append --groups sudo ${USER}
-RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-WORKDIR ${WORK_DIR}
-RUN chown --recursive ${USER} ${WORK_DIR} ${ANDROID_SDK_HOME}
-RUN chown ${USER} /opt
-USER ${USER}
+#ARG UID=1000
+#ENV USER="user"
+#ENV HOME_DIR="/home/${USER}"
+#ENV WORK_DIR="${HOME_DIR}/wspace" \
+#    PATH="${HOME_DIR}/.local/bin:${PATH}"
+#RUN useradd --uid $UID --create-home --shell /bin/bash ${USER}
+#RUN usermod -append --groups sudo ${USER}
+#RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+#WORKDIR ${WORK_DIR}
+#RUN chown --recursive ${USER} ${WORK_DIR} ${ANDROID_SDK_HOME}
+#RUN chown ${USER} /opt
+#USER ${USER}
 
 # venv, VIRTUAL_ENV is used by buildozer to indicate a venv environment
 ENV VIRTUAL_ENV=/opt/venv
