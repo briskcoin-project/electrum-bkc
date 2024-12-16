@@ -73,16 +73,15 @@ RUN apt-get update -q && \
     apt-get autoremove -y && \
     apt-get clean
 
-# create new user to avoid using root; but with sudo access and no password for convenience.
-#ARG UID=1000
-#ENV USER="user"
-#ENV HOME_DIR="/home/${USER}"
-#ENV WORK_DIR="${HOME_DIR}/wspace" \
-#    PATH="${HOME_DIR}/.local/bin:${PATH}"
-#RUN useradd --uid $UID --create-home --shell /bin/bash ${USER}
-#RUN usermod -append --groups sudo ${USER}
-#RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-#WORKDIR ${WORK_DIR}
-#RUN chown --recursive ${USER} ${WORK_DIR}
-#USER ${USER}
+RUN apt-get update -q && apt-get install -qy \
+    wget build-essential libssl-dev libffi-dev zlib1g-dev && \
+    wget https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tgz && \
+    tar -xvzf Python-3.8.16.tgz && \
+    cd Python-3.8.16 && \
+    ./configure && make && make install && \
+    python3.8 --version
+    
+RUN pip3 install websockets aiohttp
 
+RUN git clone https://github.com/briskcoin-project/aionostr.git && \
+    pip3 install ./aionostr

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME_ROOT=electrum-bkc
+NAME_ROOT=electrum
 
 export PYTHONDONTWRITEBYTECODE=1  # don't create __pycache__/ folders with .pyc files
 
@@ -8,12 +8,13 @@ export PYTHONDONTWRITEBYTECODE=1  # don't create __pycache__/ folders with .pyc 
 # Let's begin!
 set -e
 
-#. "$CONTRIB"/build_tools_util.sh
-. /opt/wine64/drive_c/electrum/contrib/build_tools_util.sh
+. "$CONTRIB"/build_tools_util.sh
 
 pushd $WINEPREFIX/drive_c/electrum
 
-VERSION=$(git describe --tags --dirty --always)
+#VERSION=$(git describe --tags --dirty --always)
+VERSION=4.5.8
+
 info "Last commit: $VERSION"
 
 # Load electrum-locale for this release
@@ -34,6 +35,12 @@ export YARL_NO_EXTENSIONS=1
 export MULTIDICT_NO_EXTENSIONS=1
 export FROZENLIST_NO_EXTENSIONS=1
 export ELECTRUM_ECC_DONT_COMPILE=1
+
+
+# Add the new package here
+info "Installing electrum_aionostr..."
+$WINE_PYTHON -m pip install --no-build-isolation --no-dependencies --no-warn-script-location \
+    --cache-dir "$WINE_PIP_CACHE_DIR" electrum_aionostr websockets
 
 info "Installing requirements..."
 $WINE_PYTHON -m pip install --no-build-isolation --no-dependencies --no-binary :all: --no-warn-script-location \
@@ -77,46 +84,5 @@ cd dist
 mv electrum-setup.exe $NAME_ROOT-$VERSION-setup.exe
 cd ..
 
-info "Padding binaries to 8-byte boundaries, and fixing COFF image checksum in PE header"
-# note: 8-byte boundary padding is what osslsigncode uses:
-#       https://github.com/mtrojnar/osslsigncode/blob/6c8ec4427a0f27c145973450def818e35d4436f6/osslsigncode.c#L3047
-(
-    cd dist
-    for binary_file in ./*.exe; do
-        info ">> fixing $binary_file..."
-        # code based on https://github.com/erocarrera/pefile/blob/bbf28920a71248ed5c656c81e119779c131d9bd4/pefile.py#L5877
-        python3 <<EOF
-pe_file = "$binary_file"
-with open(pe_file, "rb") as f:
-    binary = bytearray(f.read())
-pe_offset = int.from_bytes(binary[0x3c:0x3c+4], byteorder="little")
-checksum_offset = pe_offset + 88
-checksum = 0
 
-# Pad data to 8-byte boundary.
-remainder = len(binary) % 8
-binary += bytes(8 - remainder)
-
-for i in range(len(binary) // 4):
-    if i == checksum_offset // 4:  # Skip the checksum field
-        continue
-    dword = int.from_bytes(binary[i*4:i*4+4], byteorder="little")
-    checksum = (checksum & 0xffffffff) + dword + (checksum >> 32)
-    if checksum > 2 ** 32:
-        checksum = (checksum & 0xffffffff) + (checksum >> 32)
-
-checksum = (checksum & 0xffff) + (checksum >> 16)
-checksum = (checksum) + (checksum >> 16)
-checksum = checksum & 0xffff
-checksum += len(binary)
-
-# Set the checksum
-binary[checksum_offset : checksum_offset + 4] = int.to_bytes(checksum, byteorder="little", length=4)
-
-with open(pe_file, "wb") as f:
-    f.write(binary)
-EOF
-    done
-)
-
-sha256sum dist/electrum-bkc-*.exe
+sha256sum dist/electrum*.exe

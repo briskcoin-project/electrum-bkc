@@ -27,14 +27,19 @@ RUN dpkg --add-architecture i386 && \
         autotools-dev \
         autoconf \
         autopoint \
+        automake \
         libtool \
         gettext \
         sudo \
         nsis \
+        python3-pip \
+        python3-venv \
         && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
     apt-get clean
+
+RUN pip3 install PyQt6 --break-system-packages
 
 RUN DEBIAN_CODENAME=$(lsb_release --codename --short) && \
     WINEVERSION="9.0.0.0~${DEBIAN_CODENAME}-1" && \
@@ -56,4 +61,5 @@ RUN DEBIAN_CODENAME=$(lsb_release --codename --short) && \
     apt-get autoremove -y && \
     apt-get clean
 
+# create new user to avoid using root; but with sudo access and no password for convenience.
 RUN mkdir --parents "/opt/wine64/drive_c/electrum"
